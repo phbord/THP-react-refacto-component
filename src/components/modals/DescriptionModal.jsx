@@ -3,9 +3,14 @@ import { Button, Col, Row, Modal, List, Tag } from 'antd/es';
 
 import AppContext from 'context/AppContext';
 
-const DescriptionModal = () => {
+const DescriptionModal = ({modalVisible}) => {
   const state = useContext(AppContext);
-  const [preview, setPreview] = React.useState(useContext(state.previewPublicationModal))
+
+  const closeModal = (e) => {
+    e.preventDefault();
+    const modalElt = e.currentTarget.closest('.ant-modal-root').parentNode
+    modalElt.parentNode.removeChild(modalElt);
+  };
 
   const updatePic = () => {
     alert("J'update la publcation avec l'id : " + state.profileData.posts[state.previewItem].id);
@@ -15,14 +20,10 @@ const DescriptionModal = () => {
     alert("Je supprime la publcation avec l'id : " + state.profileData.posts[state.previewItem].id);
   }
 
-  React.useEffect(() => {
-    console.log('MODAL state.previewItem: ', preview)
-  }, [preview])
-
   return (<>
     <Modal width={520} 
-            visible={preview} 
-            onCancel={() => setPreview(false)}
+            visible={modalVisible} 
+            onCancel={(e) => closeModal(e)}
             footer={
               <Row type="flex">
                 <Col span={12} className="text-center">

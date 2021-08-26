@@ -5,16 +5,16 @@ import MentionsTagsComponent from './MentionsTagsComponent';
 
 import AppContext from 'context/AppContext';
 import Publications from 'components/Publications';
-import DescriptionModal from 'components/modals/DescriptionModal';
+//import Description from 'components/Description';
 
 const App = () => {
-  const state = AppContext._currentValue
-  console.log('AppContext: ', AppContext._currentValue)
+  const state = AppContext._currentValue;
+  console.log('AppContext: ', AppContext._currentValue);
 
   return (
     <AppContext.Provider value={state}>
       <div style={{ margin: 50 }}>
-        <DescriptionModal />
+        {/* <Description /> */}
         <Publications />
       </div>
     </AppContext.Provider>

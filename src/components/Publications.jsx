@@ -2,17 +2,22 @@ import React, { useContext } from 'react';
 import { Card, Col, Icon, Row } from 'antd/es';
 
 import AppContext from 'context/AppContext';
+import DescriptionModal from 'components/modals/DescriptionModal';
 
 const Publications = () => {
   const state = useContext(AppContext);
 
+  const [modalVisible, setModalVisible] = React.useState(false);
+
   const openPreview = (postNumber) => {
     state.previewItem = postNumber
     state.previewPublicationModal = true
-    console.log(state.previewItem,' state: ',state.previewPublicationModal)
+    setModalVisible(true)
   }
 
   return (<>
+    <p>{state.previewPublicationModal}</p>
+    <DescriptionModal modalVisible={modalVisible} />
     <Row type="flex" justify="center">
       <Col sm={18} xs={24}>
         <Col span={24} className="container text-center">
